@@ -30,17 +30,26 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Leaderboard',
+          title: 'Home',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="explore"
         options={{
           title: 'New Goal',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="plus" color={color} />,
         }}
-      />
+      /> */}
+        <Tabs.Screen
+          name="camera"
+          options={{
+            title: "Camera",
+            tabBarIcon: ({ color }) => (
+              <IconSymbol size={28} name="camera" color={color} />
+            ),
+          }}
+        />
       <Tabs.Screen
         name="User"
         options={{
@@ -49,16 +58,7 @@ export default function TabLayout() {
         }}
       />
       
-      <Tabs.Screen
-        name="camera"
-        options={{
-          title: "Camera",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="camera" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="add"
         options={{
           title: "Tasks",
@@ -66,7 +66,7 @@ export default function TabLayout() {
             <IconSymbol size={28} name="paperplane.fill" color={color} />
           ),
         }}
-        />
+        /> */}
     </Tabs>
   );
 }

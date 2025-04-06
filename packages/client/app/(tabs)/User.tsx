@@ -54,45 +54,7 @@ export default function TabTwoScreen() {
             </View>
           </View>
         </Modal>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            
-            setModalVisible(!modalVisible);
-          }}>
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <ThemedView style = {styles.toppopup}>
-              <TouchableOpacity onPress = {() => setModalVisible(false)}>
-              <Image
-                  source = {require('../../assets/images/close.png')}
-                  style = {styles.closetab}
-                  
-                />
-              </TouchableOpacity>
-                <ThemedText type = 'subtitle' style={styles.modalText}>Payment Information</ThemedText>
-                
-              </ThemedView>
-              <ThemedView style = {styles.goalform}>
-                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Name</ThemedText>
-                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
-                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Whatever</ThemedText>
-                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
-                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Info</ThemedText>
-                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
-                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Info</ThemedText>
-                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
-                
-                <TouchableOpacity style = {styles.button} onPress = {() => setModalVisible(false)}>
-                  <ThemedText type = 'subtitle' style = {styles.formbutton}>CLOSE</ThemedText>
-                </TouchableOpacity>
-              </ThemedView>
-            </View>
-          </View>
-        </Modal>
-        
+
       </SafeAreaView>
     </SafeAreaProvider>
       <ThemedView style = {styles.moneycontainer}>
@@ -152,40 +114,6 @@ export default function TabTwoScreen() {
       </ThemedView>
       </TouchableOpacity>
       <TouchableOpacity>
-      <ThemedView style={styles.stepContainer}>
-        
-        <Collapsible title = {<ThemedText type = 'subtitle'>Payment Information</ThemedText>} >
-          
-          <ThemedView style = {styles.lefthandstep}>
-          
-          <ThemedText style = {styles.alertdesc}>
-            <ThemedText type="default">Review personal information{"\n"}{"\n"}</ThemedText>
-            <ThemedText type = 'subtitle'>Cardholder Name:{"\n"}</ThemedText>
-              <ThemedText type = 'default'>Pearce Packman{"\n"}{"\n"}</ThemedText>
-            
-            <ThemedText type = 'subtitle'>Card Number:{"\n"}</ThemedText>
-            
-                <ThemedText type = 'default'>0000 0000 0000 0000{"\n"}{"\n"}</ThemedText>
-                <ThemedText type = 'subtitle'style = {styles.alertdesc}>Expiration Date:{"\n"}</ThemedText>
-                <ThemedText type = 'default'>08/29{"\n"}{"\n"}</ThemedText>
-                <ThemedText type = 'subtitle'>Security Code:{"\n"}</ThemedText>
-                <ThemedText type = 'default'>###{"\n"}{"\n"}</ThemedText>
-                <ThemedText type = 'subtitle'>Info:{"\n"}</ThemedText>
-                <ThemedText type = 'default'>Actual info</ThemedText>
-          
-          </ThemedText>
-        
-        </ThemedView>
-        </Collapsible>
-        <ThemedView style ={styles.checkBoxCont}>
-        <Image
-            source = {require('../../assets/images/credit-card.png')}
-            style={styles.checkMark}
-          />
-          
-        </ThemedView>
-        
-      </ThemedView>
       </TouchableOpacity>
       
       
