@@ -10,6 +10,7 @@ import { Image } from "expo-image";
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
+import axios from "axios";
 
 export default function App() {
   const [permission, requestPermission] = useCameraPermissions();
@@ -33,8 +34,18 @@ export default function App() {
   }
 
   const takePicture = async () => {
-    const photo = await ref.current?.takePictureAsync();
-    setUri(photo?.uri);
+    console.log("Inside of takePicture")
+    try {
+      const photo = await ref.current?.takePictureAsync({ base64: true });
+      if (photo) {
+        setUri(photo?.uri);
+        const dataUri = `data:image/jpeg;base64,${photo.base64}`;
+        const response = await axios.post("http://10.233.161.102:8080/api/analyze", { image: dataUri });
+        console.log("Server response:", response.data);
+      }
+    } catch(e) {
+      console.error("Hit error taking picture and sending to the servers: ", e);
+    }
   };
 
   const toggleFacing = () => {
@@ -119,7 +130,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "flex-end",
     padding: 10,
-    top: 60
+    top: 60,
   },
   shutterContainer: {
     position: "absolute",
