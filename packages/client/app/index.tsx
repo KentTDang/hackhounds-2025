@@ -7,7 +7,7 @@ const Page = () => {
   
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Group Motivation</Text>
+      <Text style={styles.title}>Group Motive</Text>
       <TouchableOpacity 
         style={styles.button}
         onPress={() => router.push('/login')}
