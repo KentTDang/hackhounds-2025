@@ -383,8 +383,9 @@ const styles = StyleSheet.create({
     left: 8,
     height: 42,
     width: 42,
-    transform: [{ rotate: "-12deg" }],
-    tintColor: "black",
+    transform: [{rotate: '-12deg'}],
+    tintColor: '#383b38'
+    
   },
   titleContainer: {
     flexDirection: "row",

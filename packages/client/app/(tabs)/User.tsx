@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
     height: 35,
     width: 35,
     //backgroundColor: 'orange',
-    tintColor: 'black',
+    tintColor: '#383b38'
     
   },
   titleContainer: {
