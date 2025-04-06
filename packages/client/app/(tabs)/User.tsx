@@ -7,7 +7,6 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context'
-import { BlurView } from '@react-native-community/blur';
 
 export default function TabTwoScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -16,9 +15,7 @@ export default function TabTwoScreen() {
     <ScrollView contentContainerStyle = {{paddingHorizontal: 10, paddingTop: 50, paddingBottom: 70}} style={styles.test}>
       <SafeAreaProvider>
       <SafeAreaView style={styles.centeredView}>
-        {modalVisible && (
-          <BlurView blurType = "light" blurAmount={10}/>
-        )}
+        {modalVisible}
         <Modal
           animationType="slide"
           transparent={true}
