@@ -29,24 +29,67 @@ export default function TabTwoScreen() {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-            <ThemedView style = {styles.toppopup}>
-            <TouchableOpacity onPress = {() => setModalVisible(false)}>
+              <ThemedView style = {styles.toppopup}>
+              <TouchableOpacity onPress = {() => setModalVisible(false)}>
               <Image
                   source = {require('../../assets/images/close.png')}
                   style = {styles.closetab}
                   
                 />
               </TouchableOpacity>
-              <ThemedText type = 'subtitle' style={styles.modalText}>Add A Goal</ThemedText>
+                <ThemedText type = 'subtitle' style={styles.modalText}>Personal Information</ThemedText>
+                
               </ThemedView>
-              
               <ThemedView style = {styles.goalform}>
-                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Goal Name</ThemedText>
-                <TextInput style = {styles.inputbox}></TextInput>
-                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Goal Description</ThemedText>
-                <TextInput style = {styles.inputbox}></TextInput>
+                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Name</ThemedText>
+                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
+                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Whatever</ThemedText>
+                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
+                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Info</ThemedText>
+                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
+                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Info</ThemedText>
+                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
+                
                 <TouchableOpacity style = {styles.button} onPress = {() => setModalVisible(false)}>
-                  <ThemedText type = 'subtitle' style = {styles.formbutton}>Add A Goal</ThemedText>
+                  <ThemedText type = 'subtitle' style = {styles.formbutton}>CLOSE</ThemedText>
+                </TouchableOpacity>
+              </ThemedView>
+            </View>
+          </View>
+        </Modal>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            
+            setModalVisible(!modalVisible);
+          }}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <ThemedView style = {styles.toppopup}>
+              <TouchableOpacity onPress = {() => setModalVisible(false)}>
+              <Image
+                  source = {require('../../assets/images/close.png')}
+                  style = {styles.closetab}
+                  
+                />
+              </TouchableOpacity>
+                <ThemedText type = 'subtitle' style={styles.modalText}>Payment Information</ThemedText>
+                
+              </ThemedView>
+              <ThemedView style = {styles.goalform}>
+                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Name</ThemedText>
+                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
+                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Whatever</ThemedText>
+                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
+                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Info</ThemedText>
+                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
+                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Info</ThemedText>
+                <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
+                
+                <TouchableOpacity style = {styles.button} onPress = {() => setModalVisible(false)}>
+                  <ThemedText type = 'subtitle' style = {styles.formbutton}>CLOSE</ThemedText>
                 </TouchableOpacity>
               </ThemedView>
             </View>
@@ -57,87 +100,66 @@ export default function TabTwoScreen() {
     </SafeAreaProvider>
       <ThemedView style = {styles.moneycontainer}>
         <ThemedView style = {styles.tasktext}>
-          <ThemedText type = 'title' style = {styles.tasktitle}>Make a goal!</ThemedText>
-          <ThemedText type = 'subtitle' style = {styles.taskdesc}>Click Here To Get Started</ThemedText>
-
+        <Image
+            source = {require('../../assets/images/user.png')}
+            style={styles.user}
+          />
+          <ThemedView style = {styles.userprofile}>
+            
+            <ThemedText type = 'subtitle' style = {styles.tasktitle}>Hello, ExampleUser</ThemedText>
+            <ThemedText type = 'default' style = {styles.taskdesc}>Nice to see you!</ThemedText>
+            
+          </ThemedView>
         </ThemedView>
         <ThemedView style = {styles.tasktime}>
-          <TouchableOpacity style = {styles.addgoalbutton} onPress = {() => setModalVisible(true)}>
-            <ThemedText type = 'subtitle'style = {styles.addgoal}>Add A Goal</ThemedText>
-            
-          </TouchableOpacity>
+          
           
         
         </ThemedView>
       </ThemedView>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Updates</ThemedText>
+        <ThemedText type="title">Settings</ThemedText>
         
       </ThemedView>
+      <TouchableOpacity onPress = {() => setModalVisible(true)}>
       <ThemedView style={styles.stepContainer}>
         <ThemedView style = {styles.lefthandstep}>
-        <ThemedText type="subtitle">Goal Name</ThemedText>
+        <ThemedText type="subtitle">Personal Information</ThemedText>
         <ThemedText style = {styles.alertdesc}>
-          <ThemedText type="defaultSemiBold">Completed for today, nice job!</ThemedText>
+          <ThemedText type="default">Review personal information</ThemedText>
           
         </ThemedText>
+        
         </ThemedView>
         <ThemedView style ={styles.checkBoxCont}>
-          <ThemedView style={styles.checkBox}></ThemedView>
-          <Image
-            source = {require('../../assets/images/check.png')}
+        <Image
+            source = {require('../../assets/images/user.png')}
             style={styles.checkMark}
           />
+          
         </ThemedView>
+        
       </ThemedView>
+      </TouchableOpacity>
       <ThemedView style={styles.stepContainer}>
         <ThemedView style = {styles.lefthandstep}>
-        <ThemedText type="subtitle">Goal Name</ThemedText>
+        <ThemedText type="subtitle">Payment Information</ThemedText>
         <ThemedText style = {styles.alertdesc}>
-          <ThemedText type="defaultSemiBold">Completed for today, nice job!</ThemedText>
+          <ThemedText type="default">Review payment information</ThemedText>
+          
           
         </ThemedText>
         </ThemedView>
         <ThemedView style ={styles.checkBoxCont}>
-          <ThemedView style={styles.checkBox}></ThemedView>
-          <Image
-            source = {require('../../assets/images/check.png')}
+        <Image
+            source = {require('../../assets/images/credit-card.png')}
             style={styles.checkMark}
           />
-        </ThemedView>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedView style = {styles.lefthandstep}>
-        <ThemedText type="subtitle">Goal Name</ThemedText>
-        <ThemedText>
-          <ThemedText type="defaultSemiBold">       Completed for today, nice job!</ThemedText>
           
-        </ThemedText>
         </ThemedView>
-        <ThemedView style ={styles.checkBoxCont}>
-          <ThemedView style={styles.checkBox}></ThemedView>
-          <Image
-            source = {require('../../assets/images/check.png')}
-            style={styles.checkMark}
-          />
-        </ThemedView>
+        
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedView style = {styles.lefthandstep}>
-        <ThemedText type="subtitle">Kent Dang</ThemedText>
-        <ThemedText style = {styles.alertdesc}>
-          <ThemedText type="defaultSemiBold">Completed XTASK today at 12:00:00, nice job!</ThemedText>
-          
-        </ThemedText>
-        </ThemedView>
-        <ThemedView style ={styles.checkBoxCont}>
-          <ThemedView style={styles.checkBox}></ThemedView>
-          <Image
-            source = {require('../../assets/images/check.png')}
-            style={styles.checkMark}
-          />
-        </ThemedView>
-      </ThemedView>
+      
       
     </ScrollView>
   );
@@ -156,15 +178,16 @@ const styles = StyleSheet.create({
   },
   moneycontainer: {
     backgroundColor: "#52796f",
-    height: 150,
+    height: 100,
     width: '95%',
     display: 'flex',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: '2%',
     marginTop: '2%',
+    flexDirection: 'row',
     borderRadius: 20,
-    //justifyContent: 'center',
+    
     alignItems: 'center',
     textAlign: 'center',
     
@@ -173,21 +196,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     //backgroundColor: '#cad2c5',
     width: '100%',
-    marginTop: '5%',
+    marginTop: 'auto',
     marginBottom: 'auto',
+    //backgroundColor: 'orange',
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
     
     
 
   },
   tasktitle:{
-    textAlign: 'center',
+    textAlign: 'left',
     color: "#d5d9d2",
   },
   taskdesc: {
-    textAlign: 'center',
+    textAlign: 'left',
     width: '100%',
     color: "#d5d9d2",
     flexWrap: 'wrap',
+    
   },
   tasktime: {
     marginBottom: '2%',
@@ -312,11 +340,11 @@ const styles = StyleSheet.create({
   },
   checkMark: {
     position: 'absolute',
-    top: -2,
+    top: 7,
     left: 8,
-    height: 42,
-    width: 42,
-    transform: [{rotate: '-12deg'}],
+    height: 35,
+    width: 35,
+    //backgroundColor: 'orange',
     tintColor: 'black',
     
   },
@@ -343,7 +371,11 @@ const styles = StyleSheet.create({
   alertdesc: {
     //backgroundColor: 'orange',
     marginLeft: 20,
-    
+  },
+  popupdesc: {
+    //backgroundColor: 'orange',
+    marginLeft: 20,
+    color: "#c1c4be",
   },
   inputbox: {
     height: 40,
@@ -377,6 +409,26 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     marginTop: 'auto',
     marginBottom: 0,
+  },
+  user: {
+    height: 70,
+    width: 70,
+    backgroundColor: '#1a2226',
+    marginLeft: 5,
+    marginRight: 'auto',
+    marginBottom: 'auto',
+    
+    //position: 'absolute',
+    marginTop: 'auto',
+    //borderColor: '#383b38',
+    //borderWidth: 1,
+    borderRadius: 40,
+    tintColor: '#383b38',
+  },
+  userprofile: {
+    //backgroundColor: 'purple',
+    width: '76%',
+    marginLeft: 'auto',
   },
   toppopup: {
     //backgroundColor: 'orange',
