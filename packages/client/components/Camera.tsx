@@ -11,6 +11,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 import axios from "axios";
+import { ThemedText } from '@/components/ThemedText';
 
 export default function App() {
   const [permission, requestPermission] = useCameraPermissions();
@@ -32,7 +33,7 @@ export default function App() {
       </View>
     );
   }
-
+  
   const takePicture = async () => {
     console.log("Inside of takePicture")
     try {
@@ -58,9 +59,21 @@ export default function App() {
         <Image
           source={{ uri }}
           contentFit="contain"
-          style={{ width: 300, aspectRatio: 1 }}
+          style={{ width: 500, aspectRatio: 1 }}
         />
+        
         <Button onPress={() => setUri(null)} title="Take another picture" />
+        <View style = {styles.yesorno}>
+          
+          <Image
+                  source = {require('../assets/images/check.png')}
+                  style = {styles.checkMark}
+                  
+                  
+                />
+          <Text>Image Verified!</Text>
+                
+          </View>
       </View>
     );
   };
@@ -74,11 +87,13 @@ export default function App() {
         mute={false}
         responsiveOrientationWhenOrientationLocked
       >
+        
         <View style={styles.filpContainer}>
           <Pressable onPress={toggleFacing}>
             <FontAwesome6 name="rotate-left" size={32} color="white" />
           </Pressable>
         </View>
+        
 
         <View style={styles.shutterContainer}>
           <Pressable onPress={takePicture}>
@@ -117,20 +132,22 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#e5e8e3",
     alignItems: "center",
     justifyContent: "center",
   },
   camera: {
     flex: 1,
     width: "100%",
+    aspectRatio: 1,
+    marginBottom: 80,
   },
   filpContainer: {
     position: "absolute",
     width: "100%",
     alignItems: "flex-end",
     padding: 10,
-    top: 60,
+    
   },
   shutterContainer: {
     position: "absolute",
@@ -148,6 +165,8 @@ const styles = StyleSheet.create({
     width: 85,
     height: 85,
     borderRadius: 45,
+    marginBottom: -30,
+    
     alignItems: "center",
     justifyContent: "center",
   },
@@ -156,4 +175,31 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 50,
   },
+  camtext: {
+    color: 'black',
+    fontSize: 36,
+    fontWeight: 'bold',
+    
+    textAlign: 'center',
+    backgroundColor: 'red',
+    height: 30,
+  },
+  checkMark: {
+    
+    
+    height: 87,
+    width: 87,
+    //backgroundColor: 'blue',
+    tintColor: '#383b38'
+    
+  },
+  yesorno: {
+    //backgroundColor: 'orange',
+    height: 100,
+    
+    justifyContent: 'center',
+    alignItems: 'center', 
+    marginTop: 0,
+    alignSelf: 'center',
+  }
 });
