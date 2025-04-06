@@ -14,8 +14,12 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 
+import { getDatabase, ref, onValue } from "firebase/database";
+import { FIREBASE_APP } from "../../FirebaseConfig";
+
 export default function HomeScreen() {
   const [timeLeft, setTimeLeft] = useState(12 * 60 * 60); // 12 hours in seconds
+  const [taskFromDb, setTaskFromDb] = useState<string>("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,13 +28,25 @@ export default function HomeScreen() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const db = getDatabase(FIREBASE_APP);
+    const tasksRef = ref(db, "tasks");
+
+    onValue(tasksRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const firstTask = Object.values(data)[0] as string;
+        setTaskFromDb(firstTask);
+      }
+    });
+  }, []);
+
   const formatTime = (seconds: number) => {
     const hrs = Math.floor(seconds / 3600);
     const mins = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
 
     const pad = (n: number) => String(n).padStart(2, "0");
-
     return `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
   };
 
@@ -49,7 +65,7 @@ export default function HomeScreen() {
             Group Motive!
           </ThemedText>
           <ThemedText type="subtitle" style={styles.taskdesc}>
-            Task Descmeowmeo
+            Task: {taskFromDb || "Loading..."}
           </ThemedText>
         </ThemedView>
         <ThemedView style={styles.tasktime}>
@@ -67,13 +83,14 @@ export default function HomeScreen() {
           <ThemedText type="title">Leaderboard</ThemedText>
         </ThemedView>
 
+        {/* Pearce Packman */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.lefthandstep}>
             <ThemedText type="subtitle">Pearce Packman</ThemedText>
             <ThemedText>
               <ThemedText type="defaultSemiBold">
                 {" "}
-                Has done their task!
+                Has done {taskFromDb}
               </ThemedText>
             </ThemedText>
           </ThemedView>
@@ -86,13 +103,14 @@ export default function HomeScreen() {
           </ThemedView>
         </ThemedView>
 
+        {/* Kent Dang */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.lefthandstep}>
             <ThemedText type="subtitle">Kent Dang</ThemedText>
             <ThemedText>
               <ThemedText type="defaultSemiBold">
                 {" "}
-                Has not done their task!
+                Has done {taskFromDb}
               </ThemedText>
             </ThemedText>
           </ThemedView>
@@ -105,13 +123,14 @@ export default function HomeScreen() {
           </ThemedView>
         </ThemedView>
 
+        {/* Jonathan Dargakis */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.lefthandstep}>
             <ThemedText type="subtitle">Jonathan Dargakis</ThemedText>
             <ThemedText>
               <ThemedText type="defaultSemiBold">
                 {" "}
-                Has not done their task!
+                Has not done {taskFromDb}
               </ThemedText>
             </ThemedText>
           </ThemedView>
@@ -149,7 +168,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-
   reactLogo: {
     height: 500,
     width: 290,
@@ -210,7 +228,6 @@ const styles = StyleSheet.create({
     width: 50,
     display: "flex",
   },
-
   tasktext: {
     textAlign: "center",
     width: "100%",
