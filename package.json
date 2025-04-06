@@ -8,5 +8,11 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "workspaces": [ "packages/client", "packages/server" ]
+  "workspaces": [
+    "packages/client",
+    "packages/server"
+  ],
+  "dependencies": {
+    "@react-native-community/blur": "^4.4.1"
+  }
 }
