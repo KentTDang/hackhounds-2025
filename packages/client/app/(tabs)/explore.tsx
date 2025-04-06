@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
     height: 42,
     width: 42,
     transform: [{rotate: '-12deg'}],
-    tintColor: 'black',
+    tintColor: '#383b38',
     
   },
   titleContainer: {
