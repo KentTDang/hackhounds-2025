@@ -11,7 +11,15 @@ export default function HomeScreen() {
 
     <ScrollView contentContainerStyle = {{paddingHorizontal: 10, paddingTop: 50, paddingBottom: 70}} style={styles.test}>
       <ThemedView style = {styles.moneycontainer}>
-        
+        <ThemedView style = {styles.tasktext}>
+          <ThemedText type = 'title' style = {styles.tasktitle}>Task Title!</ThemedText>
+          <ThemedText type = 'subtitle' style = {styles.taskdesc}>Task Descmeowmeo</ThemedText>
+
+        </ThemedView>
+        <ThemedView style = {styles.tasktime}>
+          <ThemedText type = 'defaultSemiBold' style = {styles.tasktimedesc}>Time Left Today:</ThemedText>
+          <ThemedText type = 'subtitle' style = {styles.tasktimeleft}>12:00:00</ThemedText>
+        </ThemedView>
       </ThemedView>
       
       
@@ -36,7 +44,7 @@ export default function HomeScreen() {
         <ThemedView style ={styles.checkBoxCont}>
           <ThemedView style={styles.checkBox}></ThemedView>
           <Image
-            source = {require('/Users/pearcepackman/Documents/Personal/CodingProjects/HackHounds2025/hackhounds-2025/packages/client/assets/images/check.png')}
+            source = {require('../../assets/images/check.png')}
             style={styles.checkMark}
           />
         </ThemedView>
@@ -53,7 +61,7 @@ export default function HomeScreen() {
         <ThemedView style ={styles.checkBoxCont}>
           <ThemedView style={styles.checkBox}></ThemedView>
           <Image
-            source = {require('/Users/pearcepackman/Documents/Personal/CodingProjects/HackHounds2025/hackhounds-2025/packages/client/assets/images/check.png')}
+            source = {require('../../assets/images/check.png')}
             style={styles.checkMark}
           />
         </ThemedView>
@@ -103,13 +111,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 10,
     marginRight: 10,
-    //backgroundColor: '#354f52',
+    paddingRight: 10,
+    paddingLeft: 10,
+    borderRadius: 12,
+    minHeight: 70,
+    maxHeight: 150,
+    backgroundColor: '#cad2c5',
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
-    
-    
-    
+    alignItems: 'center',
     
   },
   
@@ -121,17 +131,21 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   test: {
-    backgroundColor: "#2f3e46"
+    backgroundColor: "#e5e8e3"
   },
   moneycontainer: {
     backgroundColor: "#52796f",
-    height: 300,
-    width: 300,
+    height: 150,
+    width: '95%',
     display: 'flex',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: '2%',
-    marginTop: '5%'
+    marginTop: '2%',
+    borderRadius: 20,
+    //justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
   },
   namecontainer: {
     //backgroundColor: "#52796f",
@@ -162,10 +176,10 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: 'auto',
-    opacity: 0.4,
+    opacity: 0.3,
     //position: 'absolute',
     marginTop: 'auto',
-    borderColor: '#84a98c',
+    borderColor: '#383b38',
     borderWidth: 1,
     left: 0,
     
@@ -179,7 +193,7 @@ const styles = StyleSheet.create({
     height: 42,
     width: 42,
     transform: [{rotate: '-12deg'}],
-    tintColor: '#cad2c5'
+    tintColor: '#383b38'
     
   },
   checkBoxCont: {
@@ -190,9 +204,41 @@ const styles = StyleSheet.create({
     width: 50,
     display: 'flex',
 
+  },
+
+  tasktext: {
+    textAlign: 'center',
+    //backgroundColor: '#cad2c5',
+    width: '100%',
+    marginTop: '5%',
+    marginBottom: 'auto',
     
 
   },
+  tasktitle:{
+    textAlign: 'center',
+    color: "#d5d9d2",
+  },
+  taskdesc: {
+    textAlign: 'center',
+    width: '100%',
+    color: "#d5d9d2",
+    
+    flexWrap: 'wrap',
+  },
+  tasktime: {
+    marginBottom: '2%',
+    color: "#d5d9d2",
+  },
+  tasktimedesc: {
+    color: "#d5d9d2",
+    marginBottom: 0,
+    textAlign: 'center'
+  },
+  tasktimeleft: {
+    textAlign: 'center',
+    color: "#d5d9d2",
+  }
 
   
   
