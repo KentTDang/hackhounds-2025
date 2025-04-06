@@ -40,8 +40,8 @@ export default function TabTwoScreen() {
                 <ThemedText type = 'subtitle' style={styles.modalText}>Personal Information</ThemedText>
                 
               </ThemedView>
-              <ThemedView style = {styles.goalform}>
-                <ThemedText type = 'subtitle' style = {styles.tasktitle}>Name</ThemedText>
+              
+                <ThemedText type = 'subtitle'>Name</ThemedText>
                 <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
                 <ThemedText type = 'subtitle' style = {styles.tasktitle}>Whatever</ThemedText>
                 <ThemedText type = 'defaultSemiBold' style = {styles.popupdesc}>Actual info</ThemedText>
@@ -53,7 +53,7 @@ export default function TabTwoScreen() {
                 <TouchableOpacity style = {styles.button} onPress = {() => setModalVisible(false)}>
                   <ThemedText type = 'subtitle' style = {styles.formbutton}>CLOSE</ThemedText>
                 </TouchableOpacity>
-              </ThemedView>
+              
             </View>
           </View>
         </Modal>
@@ -121,16 +121,29 @@ export default function TabTwoScreen() {
         <ThemedText type="title">Settings</ThemedText>
         
       </ThemedView>
-      <TouchableOpacity onPress = {() => setModalVisible(true)}>
+      <TouchableOpacity>
       <ThemedView style={styles.stepContainer}>
-        <ThemedView style = {styles.lefthandstep}>
-        <ThemedText type="subtitle">Personal Information</ThemedText>
-        <ThemedText style = {styles.alertdesc}>
-          <ThemedText type="default">Review personal information</ThemedText>
+        
+        <Collapsible title = {<ThemedText type = 'subtitle'>Personal Information</ThemedText>} >
           
-        </ThemedText>
+          <ThemedView style = {styles.lefthandstep}>
+          
+          <ThemedText style = {styles.alertdesc}>
+            <ThemedText type="default">Review personal information{"\n"}{"\n"}</ThemedText>
+            
+            <ThemedText type = 'subtitle'>Name:{"\n"}</ThemedText>
+                <ThemedText type = 'default'>Pearce Packman{"\n"}{"\n"}</ThemedText>
+                <ThemedText type = 'subtitle'style = {styles.alertdesc}>Whatever:{"\n"}</ThemedText>
+                <ThemedText type = 'default'>Actual info{"\n"}{"\n"}</ThemedText>
+                <ThemedText type = 'subtitle'>Info:{"\n"}</ThemedText>
+                <ThemedText type = 'default'>Actual info{"\n"}{"\n"}</ThemedText>
+                <ThemedText type = 'subtitle'>Info:{"\n"}</ThemedText>
+                <ThemedText type = 'default'>Actual info</ThemedText>
+          
+          </ThemedText>
         
         </ThemedView>
+        </Collapsible>
         <ThemedView style ={styles.checkBoxCont}>
         <Image
             source = {require('../../assets/images/user.png')}
@@ -141,15 +154,32 @@ export default function TabTwoScreen() {
         
       </ThemedView>
       </TouchableOpacity>
+      <TouchableOpacity>
       <ThemedView style={styles.stepContainer}>
-        <ThemedView style = {styles.lefthandstep}>
-        <ThemedText type="subtitle">Payment Information</ThemedText>
-        <ThemedText style = {styles.alertdesc}>
-          <ThemedText type="default">Review payment information</ThemedText>
+        
+        <Collapsible title = {<ThemedText type = 'subtitle'>Payment Information</ThemedText>} >
           
+          <ThemedView style = {styles.lefthandstep}>
           
-        </ThemedText>
+          <ThemedText style = {styles.alertdesc}>
+            <ThemedText type="default">Review personal information{"\n"}{"\n"}</ThemedText>
+            <ThemedText type = 'subtitle'>Cardholder Name:{"\n"}</ThemedText>
+              <ThemedText type = 'default'>Pearce Packman{"\n"}{"\n"}</ThemedText>
+            
+            <ThemedText type = 'subtitle'>Card Number:{"\n"}</ThemedText>
+            
+                <ThemedText type = 'default'>0000 0000 0000 0000{"\n"}{"\n"}</ThemedText>
+                <ThemedText type = 'subtitle'style = {styles.alertdesc}>Expiration Date:{"\n"}</ThemedText>
+                <ThemedText type = 'default'>08/29{"\n"}{"\n"}</ThemedText>
+                <ThemedText type = 'subtitle'>Security Code:{"\n"}</ThemedText>
+                <ThemedText type = 'default'>###{"\n"}{"\n"}</ThemedText>
+                <ThemedText type = 'subtitle'>Info:{"\n"}</ThemedText>
+                <ThemedText type = 'default'>Actual info</ThemedText>
+          
+          </ThemedText>
+        
         </ThemedView>
+        </Collapsible>
         <ThemedView style ={styles.checkBoxCont}>
         <Image
             source = {require('../../assets/images/credit-card.png')}
@@ -159,6 +189,8 @@ export default function TabTwoScreen() {
         </ThemedView>
         
       </ThemedView>
+      </TouchableOpacity>
+      
       
       
     </ScrollView>
@@ -209,6 +241,7 @@ const styles = StyleSheet.create({
   tasktitle:{
     textAlign: 'left',
     color: "#d5d9d2",
+    flexWrap: 'wrap',
   },
   taskdesc: {
     textAlign: 'left',
@@ -307,8 +340,11 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingLeft: 10,
     borderRadius: 12,
+    paddingTop: 10,
+    paddingBottom: 10,
+
     minHeight: 70,
-    maxHeight: 150,
+    maxHeight: 'auto',
     backgroundColor: '#cad2c5',
     display: 'flex',
     flexDirection: 'row',
@@ -331,7 +367,7 @@ const styles = StyleSheet.create({
   },
   checkBoxCont: {
     position: 'relative',
-    //backgroundColor: '#cad2c5',
+    //backgroundColor: 'blue',
     marginLeft: 'auto',
     height: 50,
     width: 50,
@@ -365,8 +401,9 @@ const styles = StyleSheet.create({
   },
   lefthandstep: {
     //backgroundColor: "#84a98c",
-    width: '80%',
+    width: 250,
     display: 'flex',
+    
   },
   alertdesc: {
     //backgroundColor: 'orange',
