@@ -5,8 +5,8 @@ A gamified goal-tracking app that motivates you to achieve your daily targets by
 
 ### Screenshots
 ![User squatting with camera verification](media/image1.png)
-![User squatting with camera verification](media/image2.png)
-![User squatting with camera verification](media/image3.png)
+![Group motivation page](media/image2.png)
+![Adding motivation and task page](media/image3.png)
 
 ## Inspiration
 
