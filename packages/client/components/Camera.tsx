@@ -24,6 +24,7 @@ export default function App() {
   const [loading, setLoading] = useState<boolean>(false);
   const [response, setResponse] = useState<string>();
   const [tasks, setTasks] = useState<{ id: string; task: string }[]>([]);
+  const [taskCompleted, setTaskCompleted] = useState<boolean>(false);
 
   useEffect(() => {
     const db = getDatabase(FIREBASE_APP);
@@ -69,15 +70,19 @@ export default function App() {
         setUri(photo?.uri);
         const dataUri = `data:image/jpeg;base64,${photo.base64}`;
         const result = await axios.post("http://10.233.160.99:8080/api/analyze", { 
-          image: dataUri
+          image: dataUri ,
+          goal: tasks[0],
         });
         console.log("Server response:", result.data);
         setResponse(result.data.result);
         console.log("✅ Testing here: ", response);
         if(JSON.stringify(response) == "Yes") {
           // Yes Logic
+          setTaskCompleted(true);
         } else {
           // No Logic
+          setTaskCompleted(false);
+
         }
       }
     } catch(e) {
@@ -111,11 +116,11 @@ export default function App() {
                   
                 />
           <Text>Image Verified!</Text>
-                
-          </View>
           <Text>
             {loading? <>Loading...</> : JSON.stringify(response)}
           </Text>
+          </View>
+
 
       </View>
     );

@@ -6,6 +6,7 @@ import {
   ScrollView,
   View,
 } from "react-native";
+import React, { useEffect, useState } from "react";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -13,7 +14,42 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 
+import { getDatabase, ref, onValue } from "firebase/database";
+import { FIREBASE_APP } from "../../FirebaseConfig";
+
 export default function HomeScreen() {
+  const [timeLeft, setTimeLeft] = useState(12 * 60 * 60); // 12 hours in seconds
+  const [taskFromDb, setTaskFromDb] = useState<string>("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const db = getDatabase(FIREBASE_APP);
+    const tasksRef = ref(db, "tasks");
+
+    onValue(tasksRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const firstTask = Object.values(data)[0] as string;
+        setTaskFromDb(firstTask);
+      }
+    });
+  }, []);
+
+  const formatTime = (seconds: number) => {
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    const pad = (n: number) => String(n).padStart(2, "0");
+    return `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
+  };
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -26,10 +62,10 @@ export default function HomeScreen() {
       <ThemedView style={styles.moneycontainer}>
         <ThemedView style={styles.tasktext}>
           <ThemedText type="title" style={styles.tasktitle}>
-            Task Title!
+            Snap Motive!
           </ThemedText>
           <ThemedText type="subtitle" style={styles.taskdesc}>
-            Task Descmeowmeo
+            Task: {taskFromDb || "Loading..."}
           </ThemedText>
         </ThemedView>
         <ThemedView style={styles.tasktime}>
@@ -37,7 +73,7 @@ export default function HomeScreen() {
             Time Left Today:
           </ThemedText>
           <ThemedText type="subtitle" style={styles.tasktimeleft}>
-            12:00:00
+            {formatTime(timeLeft)}
           </ThemedText>
         </ThemedView>
       </ThemedView>
@@ -47,56 +83,46 @@ export default function HomeScreen() {
           <ThemedText type="title">Leaderboard</ThemedText>
         </ThemedView>
 
+        {/* Pearce Packman */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.lefthandstep}>
             <ThemedText type="subtitle">Pearce Packman</ThemedText>
             <ThemedText>
               <ThemedText type="defaultSemiBold">
                 {" "}
-                Has done their task!
+                Has done {taskFromDb}
               </ThemedText>
             </ThemedText>
           </ThemedView>
-          <ThemedView style={styles.checkBoxCont}>
-            <ThemedView style={styles.checkBox}></ThemedView>
-            <Image
-              source={require("../../assets/images/check.png")}
-              style={styles.checkMark}
-            />
-          </ThemedView>
+
         </ThemedView>
 
+        {/* Kent Dang */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.lefthandstep}>
             <ThemedText type="subtitle">Kent Dang</ThemedText>
             <ThemedText>
               <ThemedText type="defaultSemiBold">
                 {" "}
-                Has not done their task!
+                Has done {taskFromDb}
               </ThemedText>
             </ThemedText>
           </ThemedView>
-          <ThemedView style={styles.checkBoxCont}>
-            <ThemedView style={styles.checkBox}></ThemedView>
-            <Image
-              source={require("../../assets/images/check.png")}
-              style={styles.checkMark}
-            />
-          </ThemedView>
+  
         </ThemedView>
+
+        {/* Jonathan Dargakis */}
         <ThemedView style={styles.stepContainer}>
           <ThemedView style={styles.lefthandstep}>
-            <ThemedText type="subtitle">Johnathan Lastname</ThemedText>
+            <ThemedText type="subtitle">Jonathan Dargakis</ThemedText>
             <ThemedText>
               <ThemedText type="defaultSemiBold">
                 {" "}
-                Has not done their task!
+                Has not done {taskFromDb}
               </ThemedText>
             </ThemedText>
           </ThemedView>
-          <ThemedView style={styles.checkBoxCont}>
-            <ThemedView style={styles.checkBox}></ThemedView>
-          </ThemedView>
+
         </ThemedView>
       </ThemedView>
     </ScrollView>
@@ -107,8 +133,6 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
-
-    //backgroundColor: '#354f52',
     height: "auto",
     borderBottomWidth: 1,
     borderBottomColor: "#cad2c5",
@@ -130,7 +154,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-
   reactLogo: {
     height: 500,
     width: 290,
@@ -151,28 +174,17 @@ const styles = StyleSheet.create({
     marginBottom: "2%",
     marginTop: "2%",
     borderRadius: 20,
-    //justifyContent: 'center',
     alignItems: "center",
     textAlign: "center",
   },
   namecontainer: {
-    //backgroundColor: "#52796f",
     display: "flex",
-
     height: "auto",
-
     marginBottom: 0,
     borderRadius: 10,
     borderColor: "#cad2c5",
-    //borderWidth: 1,
   },
-  name: {
-    marginBottom: "10%",
-    backgroundColor: "#cad2c5",
-  },
-  lefthandstep: {
-    //backgroundColor: "#84a98c"
-  },
+  lefthandstep: {},
   checkBox: {
     height: 30,
     width: 30,
@@ -181,7 +193,6 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     marginBottom: "auto",
     opacity: 0.3,
-    //position: 'absolute',
     marginTop: "auto",
     borderColor: "#383b38",
     borderWidth: 1,
@@ -198,16 +209,13 @@ const styles = StyleSheet.create({
   },
   checkBoxCont: {
     position: "relative",
-    //backgroundColor: '#cad2c5',
     marginLeft: "auto",
     height: 50,
     width: 50,
     display: "flex",
   },
-
   tasktext: {
     textAlign: "center",
-    //backgroundColor: '#cad2c5',
     width: "100%",
     marginTop: "5%",
     marginBottom: "auto",
@@ -220,7 +228,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: "100%",
     color: "#d5d9d2",
-
     flexWrap: "wrap",
   },
   tasktime: {
