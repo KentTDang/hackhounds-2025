@@ -3,10 +3,10 @@
 <br/>
 A gamified goal-tracking app that motivates you to achieve your daily targets by capturing a photo of you in action!
 
-### Screenshots
-![User squatting with camera verification](media/image1.png)
-![Group motivation page](media/image2.png)
-![Adding motivation and task page](media/image3.png)
+## Screenshots
+| Working out with camera verification | Group motivation page | Adding task page |
+|:-----------------------------------------:|:---------------------:|:----------------:|
+| <img src="media/image1.png" alt="User squatting with camera verification" width="300"/> | <img src="media/image2.png" alt="Group motivation page" width="300"/> | <img src="media/image3.png" alt="Adding task page" width="300"/> |
 
 ## Inspiration
 
